@@ -41,6 +41,7 @@ const makeImage = ({ imageURL }) => {
 //  Destructure `open` and `close` from the constants
 import panelData from './data/panelData'
 import constants from './data/constants'
+import linkData from './data/linkData'
 
 const { open, close } = constants
 
@@ -139,3 +140,25 @@ panelData.forEach(({ title, content }) => {
 // and returns an anchor tag with the right href, class and textContent.
 // Loop over the 'linkData' in the data folder, generate anchor tags
 // and append them to the nav.
+
+const linkMaker = ({ href, className, text }) => {
+  // initialize anchor tag
+  const menuItem = document.createElement('a')
+
+  // manipulate DOM element's attributes
+  menuItem.href = href
+  menuItem.classList.add(className)
+  menuItem.textContent = text
+
+  //returns a DOM element
+  return menuItem
+}
+
+console.log(linkData)
+const nav = document.querySelector('nav')
+linkData.forEach((data) => {
+  const link = linkMaker(data)
+  //append to parent node
+  nav.appendChild(link)
+
+})
